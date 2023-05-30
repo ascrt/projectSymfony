@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block body %}
+
+    <main>
+        <article>
+            <h2> Nos pizzas </h2>
+    
+            {% for pizza in pizzas %}
+        
+                <div class="big-box">
+                    <h2> {{pizza.name}}</h2>
+                    <p> {{pizza.description}}</p>
+                    <div class="box">
+                        <p> Prix: {{pizza.price}}€</p>
+                        <a href="#"> Ajouter au panier </a>
+                    </div>
+                    
+                </div>
+            {% endfor %}
+    
+        </article>
+        
+    </main>
+{% endblock %}

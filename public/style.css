@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/**** Header ****/
+
+header {
+    min-height: 40vh;
+    background-image: url("./images/pizza-oven-2537308_640.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+/**** Navbar ****/
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 5vh;
+    background-color: rgba(73, 73, 73, 0.644);
+    }
+
+.fa-solid, .fa-sharp {
+    margin: 10px;
+    padding: 10px;
+    color: whitesmoke;
+    font-size: 1.3em;
+}
+
+h1 {
+    margin-top: 5%;
+    font-size: 3.5em;
+}
+
+h1, header p {
+    text-align: center;
+    color: whitesmoke;
+}
+
+header p {
+    font-size: 2em;
+    text-align: center;
+}
+
+/***** main ****/
+
+main {
+    border: 1px solid black;
+}
+
+main article {
+    margin: auto;
+    width: 60%;
+    
+}
+
+main article .big-box {
+    margin: 10px;
+    padding: 10px;
+    background-image: url("./images/header_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: whitesmoke;
+    border: 1px solid red;
+}
+
+main article .big-box h2 {
+    font-family: 'Segoe UI';
+    text-align: center;
+}
+
+main article .big-box p {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+    
+main article .big-box .box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
