@@ -44,7 +44,7 @@ class UserController extends AbstractController
 
 
             //Redirection
-        
+            return $this->redirectToRoute('app_pizza_home');
         }
 
         //Rendu

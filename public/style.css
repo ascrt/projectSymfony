@@ -11,6 +11,7 @@ a {
 
 header {
     min-height: 40vh;
+    padding-top: 20px;
     background-image: url("./images/pizza-oven-2537308_640.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,17 +21,20 @@ header {
 
 /**** Navbar ****/
 
-nav {
+header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 5vh;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
     background-color: rgba(73, 73, 73, 0.644);
     }
 
 .fa-solid, .fa-sharp {
     margin: 10px;
-    padding: 10px;
+    padding: 5px;
     color: whitesmoke;
     font-size: 1.3em;
 }
@@ -52,29 +56,34 @@ header p {
 
 /***** main ****/
 
-main {
-    border: 1px solid black;
-}
-
 main article {
     margin: auto;
     width: 60%;
-    
+}
+
+main article h2 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI';
+    font-size: 1.8em;
 }
 
 main article .big-box {
-    margin: 10px;
+    margin-bottom: 5%;
     padding: 10px;
-    background-image: url("./images/header_bg.jpg");
+    background-image: url("./images/pizza1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    color: whitesmoke;
-    border: 1px solid red;
+    font-family: Arial;
+    color: white;
 }
+
+
 
 main article .big-box h2 {
     font-family: 'Segoe UI';
+    font-size: 1.8em;
     text-align: center;
 }
 
@@ -87,4 +96,112 @@ main article .big-box .box {
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.box p {
+    font-family: 'Segoe UI';
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.box a {
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    background-color: rgba(144, 238, 144, 0.692);
+    font-weight: bold;
+}
+
+.box a, .box .fa-solid {
+    color: rgb(46, 46, 46);
+}
+
+/***** Footer ****/
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(56, 56, 56);
+    color: whitesmoke;
+}
+
+footer nav {
+    display: flex;
+    justify-content: flex-start;
+}
+
+footer nav ul li {
+    padding: 15px;
+    list-style-type: none;
+}
+
+footer nav ul  li a {
+    color: white;
+}
+
+footer h2 {
+    margin-right: 2%;
+    font-size: 1.8em;
+}
+
+#title-footer {
+    font-family: 'Segoe UI';
+    font-size: 1.6em;
+}
+
+
+
+/******************* LOGIN ******************/
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 50vh;
+    width: 50%;
+    margin: 15px auto;
+    font-family: 'Segoe UI';
+}
+
+form h1 {
+    color: black;
+}
+
+form div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 150px;
+    width: 80%;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    padding: 15px;
+}
+
+form div label {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+form div input {
+    height: 50px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: rgb(46, 46, 46);
+}
+
+button[type="submit"] {
+    height: 70px;
+    padding: 10px;
+    margin: auto;
+    background-color: rgba(144, 238, 144, 0.692);
+    color: black;
+    border-radius: 5px;
+}
+
+button[type="submit"] > i {
+    color: black;
 }

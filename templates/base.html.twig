@@ -18,15 +18,27 @@
     <body>
         <header>
             <nav>
-                <a href="#"> <i class="fa-solid fa-house-chimney"></i> </a>
+                <a href="{{path('app_pizza_home')}}"> <i class="fa-solid fa-house-chimney"></i> </a>
                 <div>
                     <a href="#"> <i class="fa-solid fa-basket-shopping"></i> </a>
-                    <a href="#"> <i class="fa-solid fa-user"></i> </a>
+                    <a href="{{path('app_login')}}"> <i class="fa-solid fa-user"></i> </a>
                 </div>
             </nav>
             <h1> Pizza Shop </h1>
             <p> Vos meilleurs pizzas à portée de click !</p>
         </header>
         {% block body %}{% endblock %}
+        <footer>
+            <h2> Pizza Shop </h2>
+            <nav>
+                <ul> 
+                    <li id="title-footer"> Plan du site </li> 
+                    <li><a href="#"> Accueil </a></li>
+                    <li><a href="#"> Contact </a></li>
+                    <li><a href="#"> Recherche </a></li>
+                    <li><a href="#"> Mentions légale </a></li>
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>
