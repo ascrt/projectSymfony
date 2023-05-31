@@ -2,32 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\PizzaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BasketRepository;
 use Gedmo\Mapping\Annotation\Timestampable;
 
-#[ORM\Entity(repositoryClass: PizzaRepository::class)]
-class Pizza
+#[ORM\Entity(repositoryClass: BasketRepository::class)]
+class Basket
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $name = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?float $price = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $imageUrl = null;
 
     #[Timestampable(on:"create")]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -37,8 +25,11 @@ class Pizza
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'pizza', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'basket', targetEntity: Article::class)]
     private Collection $articles;
+
+    #[ORM\OneToOne(mappedBy: 'basket', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -48,54 +39,6 @@ class Pizza
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(?float $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    public function getImageUrl(): ?string
-    {
-        return $this->imageUrl;
-    }
-
-    public function setImageUrl(?string $imageUrl): self
-    {
-        $this->imageUrl = $imageUrl;
-
-        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
@@ -134,7 +77,7 @@ class Pizza
     {
         if (!$this->articles->contains($article)) {
             $this->articles->add($article);
-            $article->setPizza($this);
+            $article->setBasket($this);
         }
 
         return $this;
@@ -144,10 +87,32 @@ class Pizza
     {
         if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($article->getPizza() === $this) {
-                $article->setPizza(null);
+            if ($article->getBasket() === $this) {
+                $article->setBasket(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setBasket(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getBasket() !== $this) {
+            $user->setBasket($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

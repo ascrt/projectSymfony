@@ -18,10 +18,17 @@
     <body>
         <header>
             <nav>
-                <a href="{{path('app_pizza_home')}}"> <i class="fa-solid fa-house-chimney"></i> </a>
+                <a href="{{path('app_pizza_home')}}" title="Accueil"> <i class="fa-solid fa-house-chimney"></i> </a>
+                {% if app.user %}
+                    <span> <a href=""> Bienvenue {{app.user.firstname}}</a></span>
+                {% endif %}
                 <div>
-                    <a href="#"> <i class="fa-solid fa-basket-shopping"></i> </a>
-                    <a href="{{path('app_login')}}"> <i class="fa-solid fa-user"></i> </a>
+                    <a href="#" title="mon panier"> <i class="fa-solid fa-basket-shopping"></i> </a>
+                    {% if app.user %}
+                        <a href="{{path('app_logout')}}" title="Déconnexion">  Déconnexion </a>
+                    {% else %}
+                        <a href="{{path('app_login')}}" title="Se connecter"> <i class="fa-solid fa-user"></i> </a>
+                    {% endif %}
                 </div>
             </nav>
             <h1> Pizza Shop </h1>
@@ -36,7 +43,7 @@
                     <li><a href="#"> Accueil </a></li>
                     <li><a href="#"> Contact </a></li>
                     <li><a href="#"> Recherche </a></li>
-                    <li><a href="#"> Mentions légale </a></li>
+                    <li><a href="#"> Mentions légales </a></li>
                 </ul>
             </nav>
         </footer>
