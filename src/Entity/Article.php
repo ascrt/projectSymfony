@@ -32,6 +32,11 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles', cascade:["persist"])]
     private ?Basket $basket = null;
 
+    #[ORM\ManyToOne(inversedBy: 'article')]
+    private ?Order $articleOrder = null;
+
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -101,4 +106,17 @@ class Article
     {
         return round($this->quantity * $this->pizza->getPrice(), 2);
     }
+
+    public function getArticleOrder(): ?Order
+    {
+        return $this->articleOrder;
+    }
+
+    public function setArticleOrder(?Order $articleOrder): self
+    {
+        $this->articleOrder = $articleOrder;
+
+        return $this;
+    }
+
 }
