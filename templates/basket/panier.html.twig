@@ -15,17 +15,19 @@
                     <h2> {{article.pizza.name}}</h2>
                     <p> {{article.pizza.description}}</p>
                     <div class="box">
-                        <p> Prix: {{article.pizza.price}}€</p>
-                        <a href="#"> <i class="fa-sharp fa-solid fa-cart-shopping"></i> Supprimer du panier </a>
+                        <p> Prix: {{article.total}}€</p>
+                        <a href="{{path('app_panier_supprimer', {id: article.id})}}"> <i class="fa-sharp fa-solid fa-trash"></i> Supprimer du panier </a>
                     </div>
                     <div class="quantite">
-                        <button  id="plus"> <a href="#"> &plus; </a> </button>
+                        <button  id="plus"> <a href="{{path('app_panier_plus', {id: article.id})}}"> &plus; </a> </button>
                         <p> {{article.quantity}}</p>
-                        <button id="moins"> <a  href="#"> &minus;</a>  </button>
+                        <button id="moins"> <a  href="{{path('app_panier_moins', {id: article.id})}}"> &minus;</a>  </button>
                     </div>
                 </div>
             </article>
         {% endfor %}
+
+        <h2> Total {{ app.user.basket.total}} €</h2>
     {% endif %}
 </main>
    

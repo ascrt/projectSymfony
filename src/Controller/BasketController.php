@@ -6,6 +6,7 @@ use App\Entity\Pizza;
 use App\Entity\Basket;
 use App\Entity\Article;
 use App\Repository\BasketRepository;
+use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -30,6 +31,7 @@ class BasketController extends AbstractController
         return $this->render('basket/panier.html.twig');   
     }
 
+    //Ajouter un aricle 
     #[Route('/mon-panier/{id}/ajouter', name: 'app_panier_ajouter')]
     public function addArticle(Pizza $pizza, BasketRepository $repository) : Response 
     {
@@ -60,6 +62,77 @@ class BasketController extends AbstractController
 
         //Redirection 
         return $this->redirectToRoute('app_panier');
-    } 
+    }
+    
+    
+    #[Route('/mon-panier/{id}/plus', name: 'app_panier_plus')]
+    public function plus (Article $article, ArticleRepository $repository) : Response 
+    {
+        //ajouter +1  la quantié 
+        $quantite = $article->getQuantity();
+
+        $article->setQuantity($quantite + 1);
+
+        //Sauvegarde dans la BDD
+        $repository->save($article, true);
+
+        //redirection vers le panier
+        return $this->redirectToRoute('app_panier');
+    }
+
+    #[Route('/mon-panier/{id}/moins', name: 'app_panier_moins')]
+    public function minus(Article $article, ArticleRepository $repository, BasketRepository $basketrepo) : Response
+    {
+        //mettre la qté à -1
+        $quantite = $article->getQuantity();
+        $article->setQuantity($quantite - 1);
+
+        //test si la qté est à 0
+        if($article->getQuantity() <= 0) {
+
+            //supprmier l'article du panier
+             /** Recuperer l'utilisateur **/
+             $user = $this->getUser();
+
+             /** Receperer son panier **/
+             $basket = $user->getBasket();
+            
+            // Supprimer l'article
+            $basket->removeArticle($article);
+
+            //mise à jour du panier
+            $basketrepo->save($basket, true);
+
+            //Redirection
+            return $this->redirectToRoute('app_panier');
+        }
+
+        //
+        $repository->save($article,true);
+
+        return $this->redirectToRoute('app_panier');
+
+    }
+
+    // Supprimer du panier
+    #[Route('/mon-panier/{id}/delete', name: 'app_panier_supprimer')]
+    public function delete(Article $article, BasketRepository $repository): Response
+    {
+         //supprmier l'article du panier
+        /** Recuperer l'utilisateur **/
+         $user = $this->getUser();
+
+        /** Receperer son panier **/
+        $basket = $user->getBasket();
+            
+        // Supprimer l'article
+        $basket->removeArticle($article);
+
+        //mise à jour du panier
+        $repository->save($basket, true);
+
+        //Redirection
+        return $this->redirectToRoute('app_panier');
+    }
 
 }

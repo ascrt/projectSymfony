@@ -25,7 +25,7 @@ class Basket
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'basket', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'basket', targetEntity: Article::class, cascade:["persist"])]
     private Collection $articles;
 
     #[ORM\OneToOne(mappedBy: 'basket', cascade: ['persist', 'remove'])]
@@ -117,12 +117,13 @@ class Basket
         return $this;
     }
 
-    public function getTotal(): int
+    public function getTotal(): float
     {
-        $total = 0;
+        $total = 0.0;
 
+        //Pour chaque article je recupère le total selon le prix
         foreach($this->articles as $article) {
-            $total = $total + $article->getQuantity();
+            $total = $total + $article->getTotal();
         }
 
         return $total;

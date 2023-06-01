@@ -26,10 +26,10 @@ class Article
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\ManyToOne(inversedBy: 'articles', cascade:["persist"])]
     private ?Pizza $pizza = null;
 
-    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\ManyToOne(inversedBy: 'articles', cascade:["persist"])]
     private ?Basket $basket = null;
 
     public function getId(): ?int
@@ -95,5 +95,10 @@ class Article
         $this->basket = $basket;
 
         return $this;
+    }
+
+    public function getTotal() : float
+    {
+        return round($this->quantity * $this->pizza->getPrice(), 2);
     }
 }
