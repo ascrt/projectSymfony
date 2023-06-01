@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon Panier {% endblock %}
+
+{% block body %}
+<main>
+     <h2 class="title"> Mon panier </h2>
+
+    {% if app.user.basket.articles | length == 0 %}
+        <h2> Votre panier est vide </h2>
+    {% else %}
+        {% for article in app.user.basket.articles %}
+            <article>
+                <div class="big-box">
+                    <h2> {{article.pizza.name}}</h2>
+                    <p> {{article.pizza.description}}</p>
+                    <div class="box">
+                        <p> Prix: {{article.pizza.price}}€</p>
+                        <a href="#"> <i class="fa-sharp fa-solid fa-cart-shopping"></i> Supprimer du panier </a>
+                    </div>
+                    <div class="quantite">
+                        <button  id="plus"> <a href="#"> &plus; </a> </button>
+                        <p> {{article.quantity}}</p>
+                        <button id="moins"> <a  href="#"> &minus;</a>  </button>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    {% endif %}
+</main>
+   
+{% endblock %}

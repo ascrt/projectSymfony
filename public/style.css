@@ -151,72 +151,28 @@ footer h2 {
     font-size: 1.6em;
 }
 
-
-
-/******************* LOGIN ******************/
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 50vh;
-    width: 50%;
-    margin: 15px auto;
-    font-family: 'Segoe UI';
-}
-
-form h1 {
+.title {
     color: black;
+    text-align: center;
 }
-
-form div {
+.quantite {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    height: 150px;
-    width: 80%;
-    margin-bottom: 20px;
-    margin-left: 25px;
-    padding: 15px;
-}
-
-form div label {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-}
-
-form div input {
-    height: 50px;
-    width: 300px;
-    border-radius: 5px;
-    font-size: 1.6em;
-    color: whitesmoke;
-    background-color: rgb(46, 46, 46);
-}
-
-button[type="submit"] {
-    height: 70px;
-    padding: 10px;
+    justify-content: space-between;
+    width: 15%;
     margin: auto;
-    background-color: rgba(144, 238, 144, 0.692);
-    color: black;
-    border-radius: 5px;
 }
 
-button[type="submit"] > i {
-    color: black;
+/**** Bouton plus et moins ****/
+
+#plus, #moins {
+    padding: 20px;
 }
+
+
+
 
 
 /********** Registration ***********/
 
-#registration {
-    width: 40%;
-    border: 1px solid blue;
-}
 
-
-#registration div {
-    margin: 10px;
-}

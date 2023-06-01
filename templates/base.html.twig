@@ -23,8 +23,8 @@
                     <span> <a href=""> Bienvenue {{app.user.firstname}}</a></span>
                 {% endif %}
                 <div>
-                    <a href="#" title="mon panier"> <i class="fa-solid fa-basket-shopping"></i> </a>
                     {% if app.user %}
+                        <a href="{{path('app_panier')}}" title="mon panier"> <i class="fa-solid fa-basket-shopping"></i> </a>
                         <a href="{{path('app_logout')}}" title="Déconnexion">  Déconnexion </a>
                     {% else %}
                         <a href="{{path('app_login')}}" title="Se connecter"> <i class="fa-solid fa-user"></i> </a>

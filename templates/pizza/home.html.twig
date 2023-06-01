@@ -15,7 +15,7 @@
                     <p> {{pizza.description}}</p>
                     <div class="box">
                         <p> Prix: {{pizza.price}}€</p>
-                        <a href="#"> <i class="fa-sharp fa-solid fa-cart-shopping"></i>Ajouter au panier </a>
+                        <a href="{{path('app_panier_ajouter', {id: pizza.id})}}"> <i class="fa-sharp fa-solid fa-cart-shopping"></i>Ajouter au panier </a>
                     </div>
                     
                 </div>

@@ -116,4 +116,16 @@ class Basket
 
         return $this;
     }
+
+    public function getTotal(): int
+    {
+        $total = 0;
+
+        foreach($this->articles as $article) {
+            $total = $total + $article->getQuantity();
+        }
+
+        return $total;
+
+    }
 }
