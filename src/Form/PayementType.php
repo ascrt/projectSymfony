@@ -3,10 +3,12 @@
 namespace App\Form;
 
 use App\DTO\Payement;
+use App\Form\AddressType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PayementType extends AbstractType
 {
@@ -18,7 +20,7 @@ class PayementType extends AbstractType
                 "required" => true
             ])
             ->add('cardName', TextType::class, [
-                "label" => "N° de carte:",
+                "label" => "Nom de la carte:",
                 "required" => true
             ])
             ->add('expirationDate', TextType::class, [

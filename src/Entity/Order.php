@@ -29,8 +29,6 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $user = null;
 
-    
-
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Address $address = null;
 

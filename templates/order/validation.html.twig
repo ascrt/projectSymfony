@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Validation {% endblock %}
+
+{% block body %}
+
+    <h2> Recapitulatif de la commande </h2>
+    <ul>
+        {% for article in order.article %}
+            <li> {{article.quantity}} x {{article.pizza.name}} x {{ article.total}}</li>
+        {% endfor %}
+    </ul>
+
+    <p> Prix total : {{order.Total}}</p>
+    
+    
+
+
+{% endblock %}

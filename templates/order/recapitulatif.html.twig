@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Validation {% endblock %}
+
+{% block body %}
+
+    <main>
+        <h2> Votre commande à bien été enregistré </h2>
+        <h3> Récapitulatif de votre commande </h3>
+
+        {% for user in app.user.orders %}
+            <p> Nom: {{user.}} </p>
+            <p> Adresse: {{user.getAddress()}}</p>
+        {% endfor %}
+        
+        {% for article in app.user.basket.articles %}
+            <div>
+                <p> {{article.pizza.name}}</p>
+                <p> Quantité: {{article.quantity}}</p>
+                <p> Prix: {{article.total}}</p>
+            </div>
+        {% endfor %}
+
+        <p> Prix Total: {{ app.user.basket.total}}€ </p>
+        <a href="{{path('app_pizza_home')}}"> Retour à l'accueil </a>
+        
+    </main>
+
+
+{% endblock %}

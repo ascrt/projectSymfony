@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Votre commande {% endblock %}
+
+{% block body %}
+    <main>
+        <h2> Votre commande </h2>
+        {% for article in app.user.basket.articles %}
+            <div>
+                <p> {{article.pizza.name}}</p>
+                <p> Quantité: {{article.quantity}}</p>
+                <p> Prix: {{article.total}}</p>
+            </div>
+        {% endfor %}
+
+        <p> Prix Total: {{ app.user.basket.total}}€ </p>
+
+        {{form (form)}}
+
+        <a href="{{path('app_pizza_home')}}"> Retour à la liste de pizza </a>
+
+
+    </main>
+
+{% endblock %}
